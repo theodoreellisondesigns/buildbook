@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1059,7 +1060,7 @@ async function uploadImage(file) {
   // 302 redirect, so the old "POST upload, poll for result" approach fails.
   // Instead we chunk the base64 into URL-safe pieces and send each via JSONP GET,
   // then call finalizeUpload to assemble + write to Drive.
-  const CHUNK_SIZE = 30000;         // ~30KB raw → ~31-35KB after URL encoding, under the ~50KB GET limit
+  const CHUNK_SIZE = 8000;          // ~8KB raw → ~9KB URL-encoded, well under any GET limit
   const BATCH = 5;                  // parallel chunks per round
   const totalChunks = Math.max(1, Math.ceil(base64.length / CHUNK_SIZE));
   const uploadId = newId('upl');
